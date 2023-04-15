@@ -284,7 +284,7 @@ void AVLTree::removeID(string ufid) {
     //1st Case : Node is leaf node (no kids) // some from balanced trees PPT 
     if(node->left == nullptr && node->right == nullptr) {
         if(parent == nullptr) { //parent = null means there is no parent, so the node must be the root node
-            root == nullptr; //sets root to null to delete it 
+            root = nullptr; //sets root to null to delete it 
         }
         else if(parent->left == node) { //if node is on the left side of the parent, sets that side to point to null
             parent->left = nullptr; 
@@ -405,6 +405,7 @@ void AVLTree::removeInorderN(string N) {
     }
     if (!isN) { //unless we find out that the Nth node doesn't exist after we traverse, then we print unsuccessful 
         cout << "unsuccessful" << endl;
+        return; 
     }
 }
 

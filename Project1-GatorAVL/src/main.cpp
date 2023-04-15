@@ -7,6 +7,9 @@ using namespace std;
 string isNameValid(string theName) { //makes sure name input by user has only letters //from project 1 breakdown ppt
 	string name = theName;
 	for (char c : name) {
+		if (c == ' ') {
+			continue; 
+		}
 		if (!isalpha(c)) {
 			return "unsuccessful";
 		}
@@ -26,6 +29,7 @@ string isIDValid(string theID) { //makes sure UFID input by user has only digits
 			return "unsuccessful";
 		}
 	}
+
 	return ID;
 }
 
@@ -55,7 +59,14 @@ int main() {
 			string ID;
 			in >> ID;
 
-			if(isNameValid(name) != "unsuccessful" && isIDValid(ID) != "unsuccessful") {
+			
+			Node* resultID = tree.searchID(ID); // searches tree for possible ID number already inserted
+
+			if (resultID != nullptr) { // if ID does already exist, prints unsuccessful 
+				cout << "unsuccessful" << endl; 
+			}
+
+			else if(isNameValid(name) != "unsuccessful" && isIDValid(ID) != "unsuccessful") {
 				tree.insert(name, ID); //inserts name and ID into tree 
 				cout << "successful" << endl; 
 			}
@@ -141,7 +152,7 @@ int main() {
 		}
 		else {
 			if(counter != 0) { //makes sure unsuccessful does not print when user inputs number of commands at start 
-			cout << "end.unsuccessful" << endl;
+			cout << "unsuccessful" << endl;
 			}
 		}
 		counter++; 
